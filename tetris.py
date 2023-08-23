@@ -163,7 +163,7 @@ class Tetris:
     def clear_lines(self):
         """Clear the lines that are full and return the number of cleared lines"""
         lines_cleared = 0
-        for i, row in enumerate(self.grid[:-1]):
+        for i, row in enumerate(self.grid):
             if all(cell != 0 for cell in row):
                 lines_cleared += 1
                 del self.grid[i]
@@ -240,7 +240,7 @@ def main():
                 sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    if game.valid_move(game.current_piece, -1, 0, 0):
+                    if game.valid_move(game.current_piece, -1, 0, 0) and game.current_piece.x > -1:
                         game.current_piece.x -= 1
                 if event.key == pygame.K_RIGHT:
                     if game.valid_move(game.current_piece, 1, 0, 0):
